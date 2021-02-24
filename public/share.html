@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Share</title>
+  <script language = "JavaScript">
+    window.onload = function() {
+      window.webkit.messageHandlers.onLoad.postMessage("")
+    }
+  </script>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-touch-callout: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    *:focus {
+      outline: none;
+    }
+
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 40px 12px 40px 12px;
+      background-color: #FFFCF6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      border: 24px double transparent;
+      border-image: url(wmbundle:///long_picture.png) 45 stretch;
+      -webkit-border-image: url(wmbundle:///long_picture.png) 45 stretch;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .container pre {
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 0.8rem;
+      overflow-x: auto;
+    }
+
+    .container pre code {
+      display: block;
+    }
+
+    .container ul,
+    .container ol {
+      padding-left: 24px;
+    }
+
+    .container li>p,
+    .container li>ol,
+    .container li>ul {
+      margin: 0;
+    }
+
+    .container a {
+      color: inherit;
+    }
+
+    .container blockquote {
+      border-left: 3px solid rgba(0, 0, 0, 0.1);
+      color: rgba(0, 0, 0, 0.8);
+      padding-left: 0.8rem;
+      font-style: italic;
+    }
+
+    .container blockquote p {
+      margin: 0;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #645647;
+      opacity: 0.28;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div class="container">
+    <!-- content -->
+  </div>
+  <div class="footer">由完美邮箱（www.88.com）发送</div>
+</body>
+
+</html>
