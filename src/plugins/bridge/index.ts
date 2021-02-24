@@ -117,13 +117,19 @@ export default class Bridge {
   }
 
   postRequestMessage<ParamType>(message: NativeMessage<ParamType>) {
-    //window.webkit?.messageHandlers?.request?.postMessage(message)
+    //ios
+    window.webkit?.messageHandlers?.request?.postMessage(message)
+
+    //android 
     // @ts-ignore
     window.request?.postMessage(JSON.stringify(message))
   }
 
   postResponseMessage<ParamType>(response: NativeResponse<ParamType>) {
-    //window.webkit?.messageHandlers?.response?.postMessage(response)
+    //ios
+    window.webkit?.messageHandlers?.response?.postMessage(response)
+
+    //android 
     // @ts-ignore
     window.response?.postMessage(JSON.stringify(response))
   }
