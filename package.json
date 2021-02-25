@@ -22,6 +22,7 @@
     "@types/prosemirror-transform": "^1.1.1",
     "@types/prosemirror-view": "^1.16.1",
     "core-js": "^3.6.5",
+    "prosemirror-utils": "^0.9.6",
     "tiptap": "^1.30.0",
     "tiptap-extensions": "^1.33.2",
     "vue": "^2.6.11",
