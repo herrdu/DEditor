@@ -1,6 +1,6 @@
-import { MarkType, MarkSpec } from 'prosemirror-model';
-import { updateMark, toggleMark } from 'tiptap-commands';
-import { Mark } from 'tiptap';
+import {MarkType, MarkSpec} from 'prosemirror-model';
+import {updateMark, toggleMark} from 'tiptap-commands';
+import {Mark} from 'tiptap';
 
 export default class FontSize extends Mark {
   get name() {
@@ -18,7 +18,7 @@ export default class FontSize extends Mark {
             if (typeof value === 'string') {
               return {fontSize: value};
             } else {
-              return null;
+              return false;
             }
           },
         },

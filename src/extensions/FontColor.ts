@@ -1,6 +1,6 @@
-import { MarkType, MarkSpec } from 'prosemirror-model';
-import { updateMark } from 'tiptap-commands';
-import { Mark } from 'tiptap';
+import {MarkType, MarkSpec} from 'prosemirror-model';
+import {updateMark} from 'tiptap-commands';
+import {Mark} from 'tiptap';
 
 export default class FontColor extends Mark {
   get name() {
@@ -18,7 +18,7 @@ export default class FontColor extends Mark {
             if (typeof value === 'string') {
               return {color: value};
             } else {
-              return null;
+              return false;
             }
           },
         },
