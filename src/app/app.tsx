@@ -162,8 +162,7 @@ export default class App extends Vue {
   }
 
   async mounted() {
-    let initContent =
-      '继张乃丹实名举报中国人寿嫩江支公司领导制造假保费套取高额产品佣金后，漳州支公司一女员工再爆料：因没配合部门经理做虚假保费，被无故强制解约。';
+    let initContent = '';
 
     if (isIOS()) {
       initContent = (await this.$bridge.sendMessage<any, GetInitContentData>(Message.GetInitContent, {}))
@@ -179,12 +178,12 @@ export default class App extends Vue {
       this.editor.setContent(initContent, false, {});
     }
 
-    this.editor.commands.image({
-      src:
-        'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1533847389,899994729&fm=55&app=54&f=JPEG?w=1140&h=640',
-      thumbnail:
-        'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1533847389,899994729&fm=55&app=54&f=JPEG?w=1140&h=640',
-    });
+    // this.editor.commands.image({
+    //   src:
+    //     'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1533847389,899994729&fm=55&app=54&f=JPEG?w=1140&h=640',
+    //   thumbnail:
+    //     'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1533847389,899994729&fm=55&app=54&f=JPEG?w=1140&h=640',
+    // });
 
     this.$nextTick(function() {
       (this.$refs.editor as Element).scrollTo(0, HeaderHeight);
