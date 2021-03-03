@@ -1,28 +1,28 @@
-import "./app.less";
+import './app.less';
 
-import { Component, Vue } from "vue-property-decorator";
-import { Editor, EditorContent } from "tiptap";
-import Bold from "@/extensions/Bold";
-import Placeholder from "@/extensions/Placeholder";
-import History from "@/extensions/History";
-import Blockquote from "@/extensions/Blockquote";
-import BulletList from "@/extensions/BulletList";
-import HardBreak from "@/extensions/HardBreak";
-import Heading from "@/extensions/Heading";
-import Image from "@/extensions/Image";
-import ListItem from "@/extensions/ListItem";
-import OrderedList from "@/extensions/OrderedList";
-import HorizontalRule from "@/extensions/HorizontalRule";
-import LineHeight from "@/extensions/LineHeight";
-import { Table, TableHeader, TableRow, TableCell } from "@/extensions/Table";
-import Link from "@/extensions/Link";
-import FontSize from "@/extensions/FontSize";
-import FontFamily from "@/extensions/FontFamily";
-import FontColor from "@/extensions/FontColor";
-import Font from "@/extensions/Font";
-import Italic from "@/extensions/Italic";
-import Underline from "@/extensions/Underline";
-import BGColor from "@/extensions/BGColor";
+import {Component, Vue} from 'vue-property-decorator';
+import {Editor, EditorContent} from 'tiptap';
+import Bold from '@/extensions/Bold';
+import Placeholder from '@/extensions/Placeholder';
+import History from '@/extensions/History';
+import Blockquote from '@/extensions/Blockquote';
+import BulletList from '@/extensions/BulletList';
+import HardBreak from '@/extensions/HardBreak';
+import Heading from '@/extensions/Heading';
+import Image from '@/extensions/Image';
+import ListItem from '@/extensions/ListItem';
+import OrderedList from '@/extensions/OrderedList';
+import HorizontalRule from '@/extensions/HorizontalRule';
+import LineHeight from '@/extensions/LineHeight';
+import {Table, TableHeader, TableRow, TableCell} from '@/extensions/Table';
+import Link from '@/extensions/Link';
+import FontSize from '@/extensions/FontSize';
+import FontFamily from '@/extensions/FontFamily';
+import FontColor from '@/extensions/FontColor';
+import Font from '@/extensions/Font';
+import Italic from '@/extensions/Italic';
+import Underline from '@/extensions/Underline';
+import BGColor from '@/extensions/BGColor';
 import {
   Message,
   Handler,
@@ -35,7 +35,8 @@ import {
   SetContentData,
   GetInitContentData,
   GetContentData,
-} from "./NoteBridge";
+} from './NoteBridge';
+import {isIOS} from '@/utils/utils';
 
 const HeaderHeight = 18;
 
@@ -46,53 +47,53 @@ const HeaderHeight = 18;
 })
 export default class App extends Vue {
   editor!: Editor;
-  updateTime = "";
+  updateTime = '';
 
   beforeCreate() {
-    this.$bridge.registerVoidHandler<SetUpdateTimeData>(Handler.SetUpdateTime, async (request) => {
+    this.$bridge.registerVoidHandler<SetUpdateTimeData>(Handler.SetUpdateTime, async request => {
       this.updateTime = request.param.updateTime;
     });
 
-    this.$bridge.registerVoidHandler<never>(Handler.ToggleBold, async (request) => {
+    this.$bridge.registerVoidHandler<never>(Handler.ToggleBold, async _request => {
       this.editor?.commands.bold();
     });
 
-    this.$bridge.registerVoidHandler<never>(Handler.ToggleBulletList, async (request) => {
+    this.$bridge.registerVoidHandler<never>(Handler.ToggleBulletList, async _request => {
       this.editor?.commands.bullet_list();
     });
 
-    this.$bridge.registerVoidHandler<never>(Handler.ToggleOrderedList, async (request) => {
+    this.$bridge.registerVoidHandler<never>(Handler.ToggleOrderedList, async _request => {
       this.editor?.commands.ordered_list();
     });
-    this.$bridge.registerVoidHandler<SetFontSizeData>(Handler.SetFontSize, async (request) => {
+    this.$bridge.registerVoidHandler<SetFontSizeData>(Handler.SetFontSize, async request => {
       this.editor?.commands.fontSize({
         fontSize: `${request.param.fontSize}px`,
       });
     });
-    this.$bridge.registerVoidHandler<SetColorData>(Handler.SetColor, async (request) => {
+    this.$bridge.registerVoidHandler<SetColorData>(Handler.SetColor, async request => {
       this.editor?.commands.fontColor({
         color: request.param.color,
       });
     });
-    this.$bridge.registerVoidHandler<InsertImageData>(Handler.InsertImage, async (request) => {
+    this.$bridge.registerVoidHandler<InsertImageData>(Handler.InsertImage, async request => {
       this.editor?.commands.image({
         src: request.param.src,
         thumbnail: request.param.thumbnail,
       });
     });
 
-    this.$bridge.registerVoidHandler<SetContentData>(Handler.SetContent, async (request) => {
+    this.$bridge.registerVoidHandler<SetContentData>(Handler.SetContent, async request => {
       this.editor?.setContent(request.param.content, false, undefined);
     });
 
-    this.$bridge.registerVoidHandler<never>(Handler.Focus, async (request) => {
+    this.$bridge.registerVoidHandler<never>(Handler.Focus, async _request => {
       this.editor?.focus();
     });
-    this.$bridge.registerVoidHandler<never>(Handler.Blur, async (request) => {
+    this.$bridge.registerVoidHandler<never>(Handler.Blur, async _request => {
       this.editor?.blur();
     });
 
-    this.$bridge.registerHandler<never, GetContentData>(Handler.GetJson, async (request) => {
+    this.$bridge.registerHandler<never, GetContentData>(Handler.GetJson, async request => {
       return {
         id: request.id,
         code: 0,
@@ -102,7 +103,7 @@ export default class App extends Vue {
       };
     });
 
-    this.$bridge.registerHandler<never, GetContentData>(Handler.GetHtml, async (request) => {
+    this.$bridge.registerHandler<never, GetContentData>(Handler.GetHtml, async request => {
       return {
         id: request.id,
         code: 0,
@@ -115,10 +116,8 @@ export default class App extends Vue {
 
   created() {
     this.editor = new Editor({
-      content: "",
+      content: '',
       onUpdate: () => {
-        console.log("onUpdate...");
-
         this.$bridge.sendMessage<OnUpdateData, never>(Message.OnUpdate, {
           json: JSON.stringify(this.editor?.getJSON() ?? {}),
         });
@@ -163,26 +162,42 @@ export default class App extends Vue {
   }
 
   async mounted() {
-    //const initContent = (await this.$bridge.sendMessage<any, GetInitContentData>(Message.GetInitContent, {})).content
-    let initContent = "";
+    let initContent =
+      '继张乃丹实名举报中国人寿嫩江支公司领导制造假保费套取高额产品佣金后，漳州支公司一女员工再爆料：因没配合部门经理做虚假保费，被无故强制解约。';
 
-    const isEmptyContent = initContent == null || (typeof initContent === "string" && initContent.length == 0);
+    if (isIOS()) {
+      initContent = (await this.$bridge.sendMessage<any, GetInitContentData>(Message.GetInitContent, {}))
+        .content;
+    }
+
+    const isEmptyContent =
+      initContent == null || (typeof initContent === 'string' && initContent.length == 0);
     if (isEmptyContent) {
       this.editor.commands.bold();
-      this.editor.commands.fontSize({ fontSize: "24px", toggle: true });
+      this.editor.commands.fontSize({fontSize: '24px', toggle: true});
+    } else {
+      this.editor.setContent(initContent, false, {});
     }
+
+    this.editor.commands.image({
+      src:
+        'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1533847389,899994729&fm=55&app=54&f=JPEG?w=1140&h=640',
+      thumbnail:
+        'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1533847389,899994729&fm=55&app=54&f=JPEG?w=1140&h=640',
+    });
+
     this.$nextTick(function() {
       (this.$refs.editor as Element).scrollTo(0, HeaderHeight);
-      setTimeout(() => {
-        this.editor?.focus();
-        if (isEmptyContent) {
-          this.editor?.commands.bold();
-          this.editor?.commands.fontSize({ fontSize: "24px", toggle: true });
-        }
-      }, 500);
+
+      // setTimeout(() => {
+      //   this.editor?.focus();
+      //   if (isEmptyContent) {
+      //     this.editor?.commands.bold();
+      //     this.editor?.commands.fontSize({ fontSize: "24px", toggle: true });
+      //   }
+      // }, 500);
     });
     this.$bridge.sendEmptyMessage(Message.OnLoad);
-    // window.editor = this.editor
   }
 
   beforeDestroy() {

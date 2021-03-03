@@ -6,7 +6,7 @@ export enum Message {
     OnUpdate = "OnUpdate",
     OnTransaction = "OnTransaction",
     GetInitContent = "GetInitContent",
-};
+}
 
 export enum Handler {
     SetUpdateTime = "SetUpdateTime",
@@ -22,48 +22,48 @@ export enum Handler {
     Blur = "Blur",
     GetJson = "GetJson",
     GetHtml = "GetHtml",
-};
+}
 
 export interface SetUpdateTimeData {
-    updateTime: string
+    updateTime: string;
 }
 
 export interface OnUpdateData {
-    json: string
+    json: string;
 }
 
 export interface OnTransactionData {
-    isBold: boolean
-    isBulletList: boolean
-    isOrderedList: boolean
+    isBold: boolean;
+    isBulletList: boolean;
+    isOrderedList: boolean;
 }
 
 export interface GetInitContentData {
-    content: any
+    content: any;
 }
 
 export interface SetFontSizeData {
-    fontSize: number
+    fontSize: number;
 }
 
 export interface SetColorData {
-    color: string
+    color: string;
 }
 
 export interface InsertImageData {
-    src: string
-    thumbnail: string
+    src: string;
+    thumbnail: string;
 }
 
 export interface SetContentData {
-    content: any
+    content: any;
 }
 
 export interface GetContentData {
-    content: string
+    content: string;
 }
 
-let bridge = new Bridge();
+const bridge = new Bridge();
 Vue.use(Bridge);
 
 export default bridge;

@@ -1,5 +1,7 @@
-import { Editor } from "tiptap";
-import Vue, { VNode } from "vue";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {Editor} from 'tiptap';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Vue, {VNode} from 'vue';
 
 declare global {
   namespace JSX {
@@ -12,8 +14,8 @@ declare global {
     }
 
     // ** Add the following lines to solve the issue **
-    interface ElementAttributesProperty{
-      $props: {}
+    interface ElementAttributesProperty {
+      $props: {};
     }
   }
 }

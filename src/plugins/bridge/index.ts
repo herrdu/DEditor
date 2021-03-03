@@ -4,11 +4,11 @@ import { Vue as _Vue } from 'vue/types/vue'
 declare global {
 
   interface WindowWebkitRequestMessageHandler {
-    postMessage: <ParamType>(message: NativeMessage<ParamType>) => void
+    postMessage: <ParamType>(message: NativeMessage<ParamType>) => void;
   }
 
   interface WindowWebkitResponseMessageHandler {
-    postMessage: <ResponseType>(message: NativeResponse<ResponseType>) => void
+    postMessage: <ResponseType>(message: NativeResponse<ResponseType>) => void;
   }
 
   interface WindowWebkitMessageHandlers {
@@ -17,7 +17,7 @@ declare global {
   }
 
   interface WindowWebkit {
-    messageHandlers?: WindowWebkitMessageHandlers
+    messageHandlers?: WindowWebkitMessageHandlers;
   }
 
   interface Window {
@@ -47,13 +47,13 @@ interface NativeMessage<ParamType> {
 interface NativeResponse<ResponseType> {
   id?: number;
   code: number;
-  data?: ResponseType
-  message?: string
+  data?: ResponseType;
+  message?: string;
 }
 
 interface Executor {
-  resolve: any
-  reject: any
+  resolve: any;
+  reject: any;
 }
 
 interface Handler<ParamType, ResponseType> {

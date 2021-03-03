@@ -1,6 +1,6 @@
-import { MarkType, MarkSpec } from 'prosemirror-model';
-import { updateMark } from 'tiptap-commands';
-import { Mark } from 'tiptap';
+import {MarkType, MarkSpec} from 'prosemirror-model';
+import {updateMark} from 'tiptap-commands';
+import {Mark} from 'tiptap';
 
 export default class LineHeight extends Mark {
   get name() {

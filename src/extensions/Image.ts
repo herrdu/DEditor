@@ -1,7 +1,7 @@
-import { EditorState, Transaction, TextSelection } from 'prosemirror-state';
-import { Node as TipTapNode, Plugin } from 'tiptap';
-import { NodeType, NodeSpec, Schema, Node as ProsemirrorNode  } from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
+import {EditorState, Transaction, TextSelection} from 'prosemirror-state';
+import {Node as TipTapNode, Plugin} from 'tiptap';
+import {NodeType, NodeSpec, Schema, Node as ProsemirrorNode} from 'prosemirror-model';
+import {EditorView} from 'prosemirror-view';
 
 /**
  * Matches following attributes in Markdown-typed image: [, alt, src, title]
