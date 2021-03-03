@@ -165,10 +165,14 @@ export default class App extends Vue {
   async mounted() {
     let initContent = '';
 
+    /** 
     if (isIOS()) {
       initContent = (await this.$bridge.sendMessage<any, GetInitContentData>(Message.GetInitContent, {}))
         .content;
-    }
+    }*/
+
+    initContent = (await this.$bridge.sendMessage<any, GetInitContentData>(Message.GetInitContent, {}))
+    .content;
 
     const isEmptyContent = 
       initContent == null || (typeof initContent === 'string' && initContent.length == 0);
