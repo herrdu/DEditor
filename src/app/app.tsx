@@ -130,6 +130,7 @@ export default class App extends Vue {
         });
       },
       injectCSS: true,
+      autoFocus: false,
       extensions: [
         new Blockquote(),
         new BulletList(),
@@ -153,7 +154,7 @@ export default class App extends Vue {
         new FontColor(),
         new Font(),
         new Italic(),
-        new Underline(),
+        // new Underline(),
         new BGColor(),
         new History(),
         new Placeholder(),
@@ -169,11 +170,12 @@ export default class App extends Vue {
         .content;
     }
 
-    const isEmptyContent =
+    const isEmptyContent = 
       initContent == null || (typeof initContent === 'string' && initContent.length == 0);
     if (isEmptyContent) {
-      this.editor.commands.bold();
-      this.editor.commands.fontSize({fontSize: '24px', toggle: true});
+      this.editor.setContent("", false, {});
+      // this.editor.commands.bold();
+      // this.editor.commands.fontSize({fontSize: '24px', toggle: true});
     } else {
       this.editor.setContent(initContent, false, {});
     }
@@ -186,17 +188,19 @@ export default class App extends Vue {
     // });
 
     this.$nextTick(function() {
-      (this.$refs.editor as Element).scrollTo(0, HeaderHeight);
+      // let editorElement = (this.$refs.editor as Element)
+      window.scrollTo(0, HeaderHeight);
 
-      // setTimeout(() => {
-      //   this.editor?.focus();
-      //   if (isEmptyContent) {
-      //     this.editor?.commands.bold();
-      //     this.editor?.commands.fontSize({ fontSize: "24px", toggle: true });
-      //   }
-      // }, 500);
+      setTimeout(() => {
+        this.editor?.focus();
+        if (isEmptyContent) {
+          this.editor?.commands.bold();
+          this.editor?.commands.fontSize({ fontSize: "24px", toggle: true });
+        }
+      }, 500);
     });
     this.$bridge.sendEmptyMessage(Message.OnLoad);
+    // (window as any).editor = this.editor
   }
 
   beforeDestroy() {
@@ -210,7 +214,6 @@ export default class App extends Vue {
           {this.updateTime}
         </div>
         <editor-content class="editor__content" editor={this.editor} />
-        <div id="footer" style="height:0;"></div>
       </div>
     );
   }
