@@ -1,6 +1,6 @@
-import { MarkSpec, MarkType } from 'prosemirror-model';
-import { Mark } from 'tiptap';
-import { toggleMark } from 'tiptap-commands';
+import {MarkSpec, MarkType} from 'prosemirror-model';
+import {Mark} from 'tiptap';
+import {toggleMark} from 'tiptap-commands';
 
 export default class Underline extends Mark {
   get name() {
@@ -19,7 +19,7 @@ export default class Underline extends Mark {
             if (typeof value === 'string' && value === 'underline') {
               return {};
             }
-            return null;
+            return false;
           },
         },
       ],

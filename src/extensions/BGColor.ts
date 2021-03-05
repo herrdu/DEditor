@@ -1,6 +1,6 @@
-import { MarkType, MarkSpec } from 'prosemirror-model';
-import { updateMark } from 'tiptap-commands';
-import { Mark } from 'tiptap';
+import {MarkType, MarkSpec} from 'prosemirror-model';
+import {updateMark} from 'tiptap-commands';
+import {Mark} from 'tiptap';
 
 export default class BGColor extends Mark {
   get name() {
@@ -17,12 +17,12 @@ export default class BGColor extends Mark {
           getAttrs: value => {
             if (typeof value === 'string') {
               if (value === '#000000' || value === 'rgb(255, 255, 255)') {
-                return null;
+                return false;
               }
 
               return {backgroundColor: value};
             } else {
-              return null;
+              return false;
             }
           },
         },
@@ -38,5 +38,4 @@ export default class BGColor extends Mark {
       return updateMark(type, attrs);
     };
   }
-
 }

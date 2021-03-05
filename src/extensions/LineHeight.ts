@@ -18,7 +18,7 @@ export default class LineHeight extends Mark {
             if (typeof value === 'string') {
               return {lineHeight: value};
             } else {
-              return null;
+              return false;
             }
           },
         },

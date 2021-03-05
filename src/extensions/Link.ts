@@ -1,92 +1,92 @@
-import { MarkType, MarkSpec, ResolvedPos } from 'prosemirror-model';
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Mark, Plugin } from 'tiptap';
-import { removeMark } from 'tiptap-commands';
+import {MarkType, MarkSpec, ResolvedPos} from 'prosemirror-model';
+import {EditorState, Transaction} from 'prosemirror-state';
+import {Mark, Plugin} from 'tiptap';
+import {removeMark} from 'tiptap-commands';
 
 function getMarkAttrs(state: EditorState, type: MarkType) {
-    const {from, to} = state.selection;
-  
-    let marks: any[] = [];
-  
-    state.doc.nodesBetween(from, to, node => {
-      marks = [...marks, ...node.marks];
-    });
-  
-    const mark = marks.find(markItem => markItem.type.name === type.name);
-  
-    if (mark) {
-      return mark.attrs;
-    }
-    return {};
+  const {from, to} = state.selection;
+
+  let marks: any[] = [];
+
+  state.doc.nodesBetween(from, to, node => {
+    marks = [...marks, ...node.marks];
+  });
+
+  const mark = marks.find(markItem => markItem.type.name === type.name);
+
+  if (mark) {
+    return mark.attrs;
+  }
+  return {};
 }
 
 function getCloseMarkRange($pos: ResolvedPos, type: any = null) {
-    if (!$pos || !type) {
-      return false;
-    }
-  
-    const start = $pos.parent.childAfter($pos.parentOffset);
-  
-    if (!start.node) {
-      return false;
-    }
-  
-    const link = start.node.marks.find(mark => mark.type === type);
-  
-    if (!link) {
-      return false;
-    }
-  
-    const startPos = $pos.start() + start.offset;
-  
-    const endPos = startPos + start.node.nodeSize;
-  
-    return {from: startPos, to: endPos};
+  if (!$pos || !type) {
+    return false;
   }
 
+  const start = $pos.parent.childAfter($pos.parentOffset);
+
+  if (!start.node) {
+    return false;
+  }
+
+  const link = start.node.marks.find(mark => mark.type === type);
+
+  if (!link) {
+    return false;
+  }
+
+  const startPos = $pos.start() + start.offset;
+
+  const endPos = startPos + start.node.nodeSize;
+
+  return {from: startPos, to: endPos};
+}
+
 function updateLink(type: MarkType, attrs: {href: string; text?: string}) {
-    return (state: EditorState, dispatch: (tr: Transaction) => void) => {
-      const text = attrs?.text || attrs.href;
-      const href = attrs.href;
-      if (!text) {
-        return;
-      }
-  
-      const {tr, selection, doc} = state;
-  
-      let {from, to} = selection;
-  
-      const {$from, empty} = selection;
-      const range = getCloseMarkRange($from, type);
-  
-      if (empty) {
-        if (range) {
-          from = range.from;
-          to = range.to;
-        } else {
-          const node = state.schema.text(text, [state.schema.marks.link.create({href})]);
-          tr.replaceSelectionWith(node, false);
-          return dispatch(tr.scrollIntoView());
-        }
-      }
-  
-      const contentText = doc.textBetween(from, to);
-  
-      if (text !== contentText) {
+  return (state: EditorState, dispatch: (tr: Transaction) => void) => {
+    const text = attrs?.text || attrs.href;
+    const href = attrs.href;
+    if (!text) {
+      return;
+    }
+
+    const {tr, selection, doc} = state;
+
+    let {from, to} = selection;
+
+    const {$from, empty} = selection;
+    const range = getCloseMarkRange($from, type);
+
+    if (empty) {
+      if (range) {
+        from = range.from;
+        to = range.to;
+      } else {
         const node = state.schema.text(text, [state.schema.marks.link.create({href})]);
         tr.replaceSelectionWith(node, false);
         return dispatch(tr.scrollIntoView());
       }
-  
-      const hasMark = doc.rangeHasMark(from, to, type);
-      if (hasMark) {
-        tr.removeMark(from, to, type);
-      }
-  
-      tr.addMark(from, to, type.create(attrs));
-  
+    }
+
+    const contentText = doc.textBetween(from, to);
+
+    if (text !== contentText) {
+      const node = state.schema.text(text, [state.schema.marks.link.create({href})]);
+      tr.replaceSelectionWith(node, false);
       return dispatch(tr.scrollIntoView());
-    };
+    }
+
+    const hasMark = doc.rangeHasMark(from, to, type);
+    if (hasMark) {
+      tr.removeMark(from, to, type);
+    }
+
+    tr.addMark(from, to, type.create(attrs));
+
+    return dispatch(tr.scrollIntoView());
+  };
 }
 
 export default class Link extends Mark {
@@ -135,7 +135,7 @@ export default class Link extends Mark {
                 style,
               };
             } else {
-              return null;
+              return false;
             }
           },
         },

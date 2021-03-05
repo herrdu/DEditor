@@ -1,7 +1,7 @@
-import { NodeSpec, NodeType, Schema } from 'prosemirror-model';
-import { wrappingInputRule } from 'prosemirror-inputrules';
-import { Node as TipTapNode } from 'tiptap';
-import { toggleList } from 'tiptap-commands';
+import {NodeSpec, NodeType, Schema} from 'prosemirror-model';
+import {wrappingInputRule} from 'prosemirror-inputrules';
+import {Node as TipTapNode} from 'tiptap';
+import {toggleList} from 'tiptap-commands';
 
 export default class OrderedList extends TipTapNode {
   get name() {
@@ -27,7 +27,7 @@ export default class OrderedList extends TipTapNode {
                 order: start ? +start : 1,
               };
             } else {
-              return null;
+              return false;
             }
           },
         },

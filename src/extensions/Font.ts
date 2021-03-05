@@ -1,6 +1,6 @@
-import { MarkType, MarkSpec } from 'prosemirror-model';
-import { updateMark } from 'tiptap-commands';
-import { Mark } from 'tiptap';
+import {MarkType, MarkSpec} from 'prosemirror-model';
+import {updateMark} from 'tiptap-commands';
+import {Mark} from 'tiptap';
 
 /** font tag size 对照 fontsize 的值 */
 const fontSizeMap: {[key: number]: string} = {
@@ -30,12 +30,12 @@ export default class Font extends Mark {
               const color = dom.getAttribute('color');
               const size = dom.getAttribute('size');
               if (color) {
-                return {color, fontSize: fontSizeMap[size as any] || null};
+                return {color, fontSize: fontSizeMap[size as any] || false};
               } else {
-                return null;
+                return false;
               }
             }
-            return null;
+            return false;
           },
         },
       ],
@@ -58,5 +58,4 @@ export default class Font extends Mark {
       return updateMark(type, attrs);
     };
   }
-
 }

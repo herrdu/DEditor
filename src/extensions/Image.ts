@@ -45,7 +45,7 @@ export default class Image extends TipTapNode {
                 thumbnail: dom.getAttribute('thumbnail'),
               };
             } else {
-              return null;
+              return false;
             }
           },
         },

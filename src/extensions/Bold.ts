@@ -1,6 +1,6 @@
-import { MarkType, MarkSpec } from 'prosemirror-model';
-import { toggleMark } from 'tiptap-commands';
-import { Mark } from 'tiptap';
+import {MarkType, MarkSpec} from 'prosemirror-model';
+import {toggleMark} from 'tiptap-commands';
+import {Mark} from 'tiptap';
 
 export default class Bold extends Mark {
   get name() {
@@ -19,14 +19,14 @@ export default class Bold extends Mark {
             if (node instanceof HTMLElement && node.style.fontWeight === 'normal') {
               return false;
             } else {
-              return null;
+              return false;
             }
           },
         },
         {
           style: 'font-weight',
           getAttrs: (value: any) => {
-            return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null;
+            return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && false;
           },
         },
       ],
@@ -43,5 +43,4 @@ export default class Bold extends Mark {
   commands({type}: {type: MarkType}) {
     return () => toggleMark(type);
   }
-
 }

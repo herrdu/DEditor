@@ -1,7 +1,7 @@
-import { NodeSpec, NodeType, Schema } from 'prosemirror-model';
+import {NodeSpec, NodeType, Schema} from 'prosemirror-model';
 
-import { Node } from 'tiptap';
-import { setBlockType, toggleBlockType } from 'tiptap-commands';
+import {Node} from 'tiptap';
+import {setBlockType, toggleBlockType} from 'tiptap-commands';
 
 type LEVEL = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -58,7 +58,7 @@ export default class Heading extends Node {
 
             return {style, level};
           }
-          return null;
+          return false;
         },
       })),
       toDOM: node => {
