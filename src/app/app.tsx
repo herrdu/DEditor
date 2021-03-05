@@ -154,7 +154,7 @@ export default class App extends Vue {
         new FontColor(),
         new Font(),
         new Italic(),
-        // new Underline(),
+        new Underline(),
         new BGColor(),
         new History(),
         new Placeholder(),
