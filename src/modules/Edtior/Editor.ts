@@ -12,17 +12,6 @@ import {camelCase, Emitter, ExtensionManager, ComponentView, minMax} from './Uti
 import {Doc, Paragraph, Text} from './Nodes';
 import {Nodes, Marks, Commands} from './Utils/ExtensionManager';
 
-declare module 'prosemirror-state' {
-  interface Plugin {
-    key: string;
-  }
-}
-declare module 'prosemirror-view' {
-  interface EditorView {
-    docView: any;
-  }
-}
-
 type Position = null | 'start' | 'end' | number | boolean;
 
 interface IOptions {

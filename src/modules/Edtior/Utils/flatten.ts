@@ -1,17 +1,19 @@
-export default function flatten(node) {
+import {Node as ProsemirrorNode} from 'prosemirror-model';
+import {NodeWithPos} from 'prosemirror-utils';
+
+export default function flatten(node: ProsemirrorNode, descend?: boolean) {
   // eslint-disable-next-line
-  const descend = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true
+  descend = descend !== undefined ? descend : true;
 
   if (!node) {
-    throw new Error('Invalid "node" parameter')
+    throw new Error('Invalid "node" parameter');
   }
-  const result = []
-  // eslint-disable-next-line
+  const result: NodeWithPos[] = [];
   node.descendants((child, pos) => {
-    result.push({ node: child, pos })
+    result.push({node: child, pos});
     if (!descend) {
-      return false
+      return false;
     }
-  })
-  return result
+  });
+  return result;
 }

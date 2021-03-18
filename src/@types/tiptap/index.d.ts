@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+import {Plugin} from 'prosemirror-state';
+import {EditorView} from 'prosemirror-view';
+
 declare module 'tiptap' {
   import Vue from 'vue';
   import {EditorState, PluginSpec} from 'prosemirror-state';
@@ -120,4 +124,15 @@ declare module 'tiptap' {
   }
 
   export {Editor, EditorContent, EditorMenuBar, EditorMenuBubble, EditorSettings, Extension, Mark, Node};
+}
+
+declare module 'prosemirror-state' {
+  interface Plugin {
+    key: string;
+  }
+}
+declare module 'prosemirror-view' {
+  interface EditorView {
+    docView: any;
+  }
 }

@@ -1,5 +1,5 @@
-import { NodeSelection } from 'prosemirror-state'
+import {NodeSelection, Selection} from 'prosemirror-state';
 
-export default function isNodeSelection(selection) {
-  return selection instanceof NodeSelection
+export default function isNodeSelection(selection: Selection) {
+  return selection instanceof NodeSelection;
 }
