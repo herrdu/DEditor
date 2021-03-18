@@ -37,6 +37,8 @@ import {
   GetContentData,
 } from './NoteBridge';
 import {isIOS} from '@/utils/utils';
+import {EditorView} from 'prosemirror-view';
+import {Slice} from 'prosemirror-model';
 
 const HeaderHeight = 18;
 
@@ -117,6 +119,9 @@ export default class App extends Vue {
   created() {
     this.editor = new Editor({
       content: '',
+      onPaste: (editorView, clipboardData, slice) => {
+        console.log('on paste ', editorView, clipboardData, slice);
+      },
       onUpdate: () => {
         this.$bridge.sendMessage<OnUpdateData, never>(Message.OnUpdate, {
           json: JSON.stringify(this.editor?.getJSON() ?? {}),
@@ -172,12 +177,12 @@ export default class App extends Vue {
     }*/
 
     initContent = (await this.$bridge.sendMessage<any, GetInitContentData>(Message.GetInitContent, {}))
-    .content;
+      .content;
 
-    const isEmptyContent = 
+    const isEmptyContent =
       initContent == null || (typeof initContent === 'string' && initContent.length == 0);
     if (isEmptyContent) {
-      this.editor.setContent("", false, {});
+      this.editor.setContent('', false, {});
       // this.editor.commands.bold();
       // this.editor.commands.fontSize({fontSize: '24px', toggle: true});
     } else {
@@ -199,7 +204,7 @@ export default class App extends Vue {
         this.editor?.focus();
         if (isEmptyContent) {
           this.editor?.commands.bold();
-          this.editor?.commands.fontSize({ fontSize: "24px", toggle: true });
+          this.editor?.commands.fontSize({fontSize: '24px', toggle: true});
         }
       }, 500);
     });
