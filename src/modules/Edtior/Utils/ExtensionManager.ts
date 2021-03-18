@@ -8,7 +8,7 @@ import {Schema} from 'prosemirror-model';
 
 export type Nodes = {[key: string]: TiptapNode};
 export type Marks = {[key: string]: TiptapMark};
-export type Commands = {[key: string]: (attrs: {[key: string]: any}) => any};
+export type Commands = {[key: string]: (attrs?: {[key: string]: any}) => any};
 
 export default class ExtensionManager {
   extensions: Extension[];
@@ -72,7 +72,7 @@ export default class ExtensionManager {
   get plugins(): Plugin[] {
     return this.extensions
       .filter(extension => extension.plugins)
-      .reduce((allPlugins, {plugins}) => [...allPlugins, ...plugins], []);
+      .reduce((allPlugins: Plugin[], {plugins}) => [...allPlugins, ...plugins], []);
   }
 
   keymaps({schema}: {schema: Schema}) {

@@ -1,6 +1,6 @@
 import {MarkType, MarkSpec} from 'prosemirror-model';
 import {updateMark} from 'tiptap-commands';
-import {Mark} from 'tiptap';
+import {Mark} from '../modules/Edtior';
 
 /** font tag size 对照 fontsize 的值 */
 const fontSizeMap: {[key: number]: string} = {

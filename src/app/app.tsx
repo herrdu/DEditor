@@ -1,7 +1,7 @@
 import './app.less';
 
 import {Component, Vue} from 'vue-property-decorator';
-import {Editor, EditorContent} from 'tiptap';
+import {Editor, EditorContent} from '../modules/Edtior';
 import Bold from '@/extensions/Bold';
 import Placeholder from '@/extensions/Placeholder';
 import History from '@/extensions/History';
@@ -117,9 +117,11 @@ export default class App extends Vue {
   }
 
   created() {
+    console.log('created');
+
     this.editor = new Editor({
       content: '',
-      onPaste: (editorView, clipboardData, slice) => {
+      onPaste: (editorView: EditorView, clipboardData: ClipboardEvent, slice: Slice) => {
         console.log('on paste ', editorView, clipboardData, slice);
       },
       onUpdate: () => {
@@ -222,7 +224,7 @@ export default class App extends Vue {
         <div id="header" style={`height:${HeaderHeight}px;`}>
           {this.updateTime}
         </div>
-        <editor-content class="editor__content" editor={this.editor} />
+        <EditorContent class="editor__content" editor={this.editor} />
       </div>
     );
   }

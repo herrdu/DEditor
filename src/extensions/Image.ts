@@ -1,5 +1,5 @@
 import {EditorState, Transaction, TextSelection} from 'prosemirror-state';
-import {Node as TipTapNode, Plugin} from 'tiptap';
+import {Node as TipTapNode, Plugin} from '../modules/Edtior';
 import {NodeType, NodeSpec, Schema, Node as ProsemirrorNode} from 'prosemirror-model';
 import {EditorView} from 'prosemirror-view';
 

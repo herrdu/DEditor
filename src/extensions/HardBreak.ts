@@ -1,7 +1,7 @@
-import { NodeType, NodeSpec } from 'prosemirror-model';
+import {NodeType, NodeSpec} from 'prosemirror-model';
 
-import { Node } from 'tiptap';
-import { chainCommands, exitCode } from 'tiptap-commands';
+import {chainCommands, exitCode} from 'tiptap-commands';
+import {Node} from '../modules/Edtior';
 
 export default class HardBreak extends Node {
   get name() {

@@ -1,6 +1,6 @@
 import {MarkType, MarkSpec} from 'prosemirror-model';
 import {toggleMark} from 'tiptap-commands';
-import {Mark} from 'tiptap';
+import {Mark} from '../modules/Edtior';
 
 export default class Bold extends Mark {
   get name() {

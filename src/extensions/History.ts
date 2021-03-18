@@ -1,5 +1,5 @@
-import { Extension, } from 'tiptap';
-import { history, undo, redo, undoDepth, redoDepth } from 'prosemirror-history';
+import {history, undo, redo, undoDepth, redoDepth} from 'prosemirror-history';
+import {Extension} from '../modules/Edtior';
 
 export default class History extends Extension {
   get name() {

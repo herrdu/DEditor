@@ -1,7 +1,7 @@
-import { NodeSpec, NodeType, Schema } from 'prosemirror-model';
+import {NodeSpec, NodeType, Schema} from 'prosemirror-model';
 
-import { Node as TipTapNode } from 'tiptap';
-import { toggleList, wrappingInputRule } from 'tiptap-commands';
+import {Node as TipTapNode} from '../modules/Edtior';
+import {toggleList, wrappingInputRule} from 'tiptap-commands';
 
 export default class BulletList extends TipTapNode {
   get name() {

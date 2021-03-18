@@ -1,7 +1,7 @@
 import {MarkType, MarkSpec, ResolvedPos} from 'prosemirror-model';
 import {EditorState, Transaction} from 'prosemirror-state';
-import {Mark, Plugin} from 'tiptap';
 import {removeMark} from 'tiptap-commands';
+import {Mark, Plugin} from '../modules/Edtior';
 
 function getMarkAttrs(state: EditorState, type: MarkType) {
   const {from, to} = state.selection;

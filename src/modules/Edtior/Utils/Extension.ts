@@ -2,12 +2,11 @@ import {Editor} from '../Editor';
 import {NodeSpec, MarkSpec, Schema, NodeType, MarkType} from 'prosemirror-model';
 import {InputRule} from 'prosemirror-inputrules';
 import {EditorView} from 'prosemirror-view';
+import {Plugin} from 'prosemirror-state';
 
 export default class Extension {
   editor: Editor | null = null;
   options: {[key: string]: any};
-
-  view: EditorView | null = null;
 
   constructor(options = {}) {
     this.options = {
@@ -28,6 +27,10 @@ export default class Extension {
     return '';
   }
 
+  get view(): EditorView | null {
+    return null;
+  }
+
   get type() {
     return 'extension';
   }
@@ -36,7 +39,7 @@ export default class Extension {
     return {};
   }
 
-  get plugins() {
+  get plugins(): Plugin[] {
     return [];
   }
 

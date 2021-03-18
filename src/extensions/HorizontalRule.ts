@@ -1,7 +1,7 @@
-import { Node } from 'tiptap';
-import { NodeType, NodeSpec } from 'prosemirror-model';
-import { EditorState, Transaction } from 'prosemirror-state';
-import { nodeInputRule } from 'tiptap-commands';
+import {NodeType, NodeSpec} from 'prosemirror-model';
+import {EditorState, Transaction} from 'prosemirror-state';
+import {nodeInputRule} from 'tiptap-commands';
+import {Node} from '../modules/Edtior';
 
 export default class HorizontalRule extends Node {
   get name() {

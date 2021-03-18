@@ -554,7 +554,7 @@ export class Editor extends Emitter {
     this.activeMarkAttrs = Object.entries(this.schema.marks).reduce(
       (marks, [name, mark]) => ({
         ...marks,
-        [name]: getMarkAttrs(this.state, mark),
+        [name]: getMarkAttrs(state, mark),
       }),
       {}
     );
@@ -562,7 +562,7 @@ export class Editor extends Emitter {
     this.activeNodes = Object.entries(this.schema.nodes).reduce(
       (nodes, [name, node]) => ({
         ...nodes,
-        [name]: (attrs: {[key: string]: any} = {}) => nodeIsActive(this.state, node, attrs),
+        [name]: (attrs: {[key: string]: any} = {}) => nodeIsActive(state, node, attrs),
       }),
       {}
     );
@@ -573,12 +573,16 @@ export class Editor extends Emitter {
   }
 
   getNodeAttrs(type: any = null) {
+    if (!this.state) {
+      return {};
+    }
+
     return {
       ...getNodeAttrs(this.state, this.schema.nodes[type]),
     };
   }
 
-  get isActive() {
+  get isActive(): {[key: string]: () => boolean} {
     return Object.entries({
       ...this.activeMarks,
       ...this.activeNodes,

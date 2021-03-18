@@ -1,6 +1,6 @@
 import {Plugin} from 'prosemirror-state';
-import { Decoration, DecorationSet } from 'prosemirror-view';
-import { Extension, } from 'tiptap';
+import {Decoration, DecorationSet} from 'prosemirror-view';
+import {Extension} from '../modules/Edtior';
 
 export default class Focus extends Extension {
   get name() {

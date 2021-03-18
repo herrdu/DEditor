@@ -1,4 +1,4 @@
-import { Node } from 'tiptap';
+import {Node} from '../../modules/Edtior';
 import TableNodes from './TableNodes';
 
 export class TableHeader extends Node {

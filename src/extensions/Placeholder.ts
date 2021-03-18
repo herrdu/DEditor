@@ -1,6 +1,6 @@
-import { EditorState } from 'prosemirror-state';
-import { Decoration, DecorationSet } from 'prosemirror-view';
-import { Extension, Plugin } from 'tiptap';
+import {EditorState} from 'prosemirror-state';
+import {Decoration, DecorationSet} from 'prosemirror-view';
+import {Extension, Plugin} from '../modules/Edtior';
 
 export default class Placeholder extends Extension {
   get name() {
@@ -25,9 +25,11 @@ export default class Placeholder extends Extension {
           decorations: (state: EditorState) => {
             const {doc, plugins, selection} = state;
             const editablePlugin = plugins.find(plugin => (plugin as any).key.startsWith('editable$'));
-            
+
             const editable =
-              editablePlugin && editablePlugin.props.editable ? (editablePlugin.props as any).editable(state) : false;
+              editablePlugin && editablePlugin.props.editable
+                ? (editablePlugin.props as any).editable(state)
+                : false;
 
             const active = editable || !this.options.showOnlyWhenEditable;
             const {anchor} = selection;

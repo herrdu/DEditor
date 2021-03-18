@@ -4,7 +4,8 @@ import {Editor} from '../Editor';
 
 @Component
 export class EditorContent extends Vue {
-  @Prop(Number) editor: Editor | null = null;
+  @Prop({default: null, type: Object})
+  editor!: Editor | null;
 
   @Watch('editor', {immediate: true})
   onEditorChange(ed: Editor) {
@@ -17,6 +18,7 @@ export class EditorContent extends Vue {
       });
     }
   }
+
   render() {
     return <div></div>;
   }

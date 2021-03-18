@@ -1,27 +1,27 @@
-import { Node } from 'tiptap';
+import {Node} from '../../modules/Edtior';
 
 import {
-    tableEditing,
-    goToNextCell,
-    addColumnBefore,
-    addColumnAfter,
-    deleteColumn,
-    addRowBefore,
-    addRowAfter,
-    deleteRow,
-    deleteTable,
-    mergeCells,
-    splitCell,
-    toggleHeaderColumn,
-    toggleHeaderRow,
-    toggleHeaderCell,
-    setCellAttr,
-    fixTables,
-  } from 'prosemirror-tables';
+  tableEditing,
+  goToNextCell,
+  addColumnBefore,
+  addColumnAfter,
+  deleteColumn,
+  addRowBefore,
+  addRowAfter,
+  deleteRow,
+  deleteTable,
+  mergeCells,
+  splitCell,
+  toggleHeaderColumn,
+  toggleHeaderRow,
+  toggleHeaderCell,
+  setCellAttr,
+  fixTables,
+} from 'prosemirror-tables';
 
-import { Schema } from 'prosemirror-model';
-import { EditorState, Transaction, TextSelection } from 'prosemirror-state';
-import { createTable } from 'prosemirror-utils';
+import {Schema} from 'prosemirror-model';
+import {EditorState, Transaction, TextSelection} from 'prosemirror-state';
+import {createTable} from 'prosemirror-utils';
 import TableNodes from './TableNodes';
 
 export class Table extends Node {

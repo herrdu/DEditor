@@ -1,6 +1,6 @@
-import { MarkSpec, MarkType } from 'prosemirror-model';
-import { Mark } from 'tiptap';
-import { toggleMark } from 'tiptap-commands';
+import {MarkSpec, MarkType} from 'prosemirror-model';
+import {toggleMark} from 'tiptap-commands';
+import {Mark} from '../modules/Edtior';
 
 export default class Italic extends Mark {
   get name() {
@@ -24,5 +24,4 @@ export default class Italic extends Mark {
   commands({type}: {type: MarkType}) {
     return () => toggleMark(type);
   }
-
 }

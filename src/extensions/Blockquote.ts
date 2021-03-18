@@ -1,6 +1,6 @@
-import { NodeType, Schema, NodeSpec } from 'prosemirror-model';
-import { Node } from 'tiptap'
-import { toggleWrap } from 'tiptap-commands';
+import {NodeType, Schema, NodeSpec} from 'prosemirror-model';
+import {Node} from '../modules/Edtior';
+import {toggleWrap} from 'tiptap-commands';
 
 export default class Blockquote extends Node {
   get name() {

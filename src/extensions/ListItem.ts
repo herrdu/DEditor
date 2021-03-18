@@ -1,6 +1,6 @@
-import { NodeType, NodeSpec } from 'prosemirror-model';
-import { Node as TipTapNode } from 'tiptap';
-import { splitListItem, liftListItem, sinkListItem } from 'tiptap-commands';
+import {NodeType, NodeSpec} from 'prosemirror-model';
+import {splitListItem, liftListItem, sinkListItem} from 'tiptap-commands';
+import {Node as TipTapNode} from '../modules/Edtior';
 
 export default class ListItem extends TipTapNode {
   get name() {

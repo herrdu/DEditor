@@ -1,25 +1,24 @@
-import Extension from './Extension'
+import Extension from './Extension';
+import {MarkSpec} from 'prosemirror-model';
 
 export default class Mark extends Extension {
-
   constructor(options = {}) {
-    super(options)
+    super(options);
   }
 
   get type() {
-    return 'mark'
+    return 'mark';
   }
 
   get view() {
-    return null
+    return null;
   }
 
-  get schema() {
-    return null
+  get schema(): MarkSpec | null {
+    return null;
   }
 
   command() {
-    return () => {}
+    return () => {};
   }
-
 }

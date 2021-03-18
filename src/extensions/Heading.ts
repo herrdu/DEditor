@@ -1,7 +1,7 @@
 import {NodeSpec, NodeType, Schema} from 'prosemirror-model';
 
-import {Node} from 'tiptap';
 import {setBlockType, toggleBlockType} from 'tiptap-commands';
+import {Node} from '../modules/Edtior';
 
 type LEVEL = 1 | 2 | 3 | 4 | 5 | 6;
 
