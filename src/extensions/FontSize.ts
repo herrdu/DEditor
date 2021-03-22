@@ -1,6 +1,7 @@
 import {MarkType, MarkSpec} from 'prosemirror-model';
 import {updateMark, toggleMark} from 'tiptap-commands';
 import {Mark} from '../modules/Edtior';
+import {toggleAndUpdateMark} from '@/modules/Edtior/Command/toggleAndUdpateMark';
 
 export default class FontSize extends Mark {
   get name() {
@@ -30,12 +31,11 @@ export default class FontSize extends Mark {
   }
 
   commands({type}: {type: MarkType}) {
-    return (attrs: any) => {
-      if (attrs.toggle) {
-        return toggleMark(type, attrs);
-      } else {
-        return updateMark(type, attrs);
+    return (attrs: {[key: string]: any}) => {
+      if (attrs.fontSize === type.attrs.fontSize.default) {
+        return toggleAndUpdateMark(type, {});
       }
+      return toggleAndUpdateMark(type, attrs);
     };
   }
 }

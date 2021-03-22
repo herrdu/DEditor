@@ -136,3 +136,9 @@ declare module 'prosemirror-view' {
     docView: any;
   }
 }
+
+declare module 'prosemirror-model' {
+  interface MarkType {
+    attrs: {[key: string]: any};
+  }
+}

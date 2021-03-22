@@ -170,6 +170,12 @@ export default class App extends Vue {
   }
 
   async mounted() {
+    console.log('editor', this.editor);
+
+    this.editor.marks.fontColor.attrs.color = {default: 'red'};
+
+    console.log('editor', this.editor.marks.fontColor.attrs.color);
+    this.editor.commands.fontColor;
     let initContent = '';
 
     /** 

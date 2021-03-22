@@ -284,6 +284,7 @@ export class Editor extends Emitter {
                 return false;
               },
               blur: (view, event) => {
+                console.log(this.state?.selection.from);
                 this.focused = false;
                 this.emit('blur', {
                   event,
