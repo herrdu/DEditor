@@ -10,7 +10,7 @@ export default class FontColor extends Mark {
   get schema(): MarkSpec {
     return {
       group: 'inline',
-      attrs: {color: {default: ''}},
+      attrs: {color: {default: '#111112'}},
       parseDOM: [
         {
           style: 'color',
