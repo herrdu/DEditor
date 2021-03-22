@@ -1,5 +1,4 @@
 import {MarkType, MarkSpec} from 'prosemirror-model';
-import {updateMark, toggleMark} from 'tiptap-commands';
 import {Mark} from '../modules/Edtior';
 import {toggleAndUpdateMark} from '@/modules/Edtior/Command/toggleAndUdpateMark';
 

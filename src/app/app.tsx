@@ -36,7 +36,6 @@ import {
   GetInitContentData,
   GetContentData,
 } from './NoteBridge';
-import {isIOS} from '@/utils/utils';
 import {EditorView} from 'prosemirror-view';
 import {Slice} from 'prosemirror-model';
 
