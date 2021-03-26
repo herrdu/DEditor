@@ -147,6 +147,29 @@ export default class Image extends TipTapNode {
               return true;
             },
           },
+          handleClickOn: (
+            view: EditorView,
+            pos: number,
+            node: ProsemirrorNode,
+            nodePos: number,
+            event: MouseEvent,
+            direct: boolean
+          ) => {
+            if (direct) {
+              setTimeout(() => {
+                if (pos === nodePos) {
+                  view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, pos, pos)));
+                } else {
+                  view.dispatch(
+                    view.state.tr.setSelection(TextSelection.create(view.state.doc, pos + 1, pos + 1))
+                  );
+                }
+                console.log('view', view.state.selection);
+              }, 0);
+              console.log('handleClickOn', this, view, pos, node, nodePos, event, direct);
+            }
+            return false;
+          },
         },
       }),
     ];
